@@ -1,6 +1,5 @@
 const validate = require('express-validation')
 const sessionValidation = require('../../validators/session/session')
-const session = require('express-session')
 
 module.exports = (router, app, db) => {
 
@@ -11,7 +10,6 @@ module.exports = (router, app, db) => {
     req.session.regenerate(async function(err) {
       console.log(err);
 
-      console.log("reached here");
       //create session data object
       let params = ["appId", "deviceId",  "apiVersion", "devMode", "createDisposition", "appVersion", "userId", "systemName", "location", "userAttributes"]
 
@@ -27,16 +25,16 @@ module.exports = (router, app, db) => {
 
 
       let resArray = [];
-      let user = await db.User.findOne({userId: req.session.obj.userId});
-      if(!user) {
+      let sessionData = await db.Session.findOne({userId: req.session.obj.userId});
+      if(!sessionData) {
         console.log(req.session.obj["createDisposition"]);
         if(req.session.obj["createDisposition"] == "CreateIfNeeded") //if create disposition is create if needed create user
         {
-          console.log("user lookup failed")
-          let user = new db.User(Object.assign({}, req.session.obj));
-          await user.save(); //save user
+
+          let sessionData = new db.Session(Object.assign({}, req.session.obj));
+          await sessionData.save(); //save user
           let resObj = {};
-          resObj.success = user.toJSON();
+          resObj.success = sessionData.toJSON();
           resArray.push(resObj);
           res.status(200).json(resArray);
         }
@@ -49,14 +47,14 @@ module.exports = (router, app, db) => {
       } else {
         params.forEach((param) => {
           if (req.session.obj[param]) {
-            user.set(param, req.session.obj[param])
+            sessionData.set(param, req.session.obj[param])
           }
         });
 
-        await user.save();
+        await sessionData.save();
 
         let resObj = {};
-        resObj.success = user.toJSON();
+        resObj.success = sessionData.toJSON();
         resArray.push(resObj);
         res.status(200).json(resArray);
       }

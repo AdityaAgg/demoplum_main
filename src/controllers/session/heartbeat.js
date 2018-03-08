@@ -1,44 +1,48 @@
 const validate = require('express-validation')
 const sessionValidation = require('../../validators/session/session')
-const sess = require('../../middlewares/sess')
-
 
 module.exports = (router, app, db) => {
 
   router.post('/heartbeat',
   validate(sessionValidation),
-  sess(),
   async (req, res, next) => {
 
 
-    req.session.touch(); //refresh the session
 
     //create session data object
     let params = ["appId", "clientKey", "deviceId",  "apiVersion", "devMode", "createDisposition",  "userId"]
     let resArray = [];
 
-
+    req.session.touch(); //refresh the session
     //check if the session is not alive
     if(!req.session.obj)
     {
       let resObj = {error: {message: 'session is not alive'}};
       resArray.push(resObj);
-      res.status(200).json(resArray);
+      req.session.destroy(function(err) { //accidentally session destroyed
+        // cannot access session here
+        res.status(200).json(resArray);
+      })
+
     }
 
 
+
+
     //find a user
-    let user = await db.User.findOne({userId: req.session.obj.userId});
+
+    let sessionData = await db.Session.findOne({userId: req.session.obj.userId});
 
 
-    if(user) {
-      if(createDisposition == "CreateIfNeeded") //if create disposition is create if needed create user
+    if(!sessionData) {
+      console.log(req.session.obj["createDisposition"]);
+      if(req.session.obj["createDisposition"] == "CreateIfNeeded") //if create disposition is create if needed create user
       {
 
-        let user = new db.User(Object.assign({}, req.session.obj));
-        await user.save(); //save user
+        let sessionData = new db.Session(Object.assign({}, req.session.obj));
+        await sessionData.save(); //save user
         let resObj = {};
-        resObj.success = user.toJSON();
+        resObj.success = sessionData.toJSON();
         resArray.push(resObj);
         res.status(200).json(resArray);
       }
@@ -52,21 +56,21 @@ module.exports = (router, app, db) => {
 
 
       let saveNeeded = false;
-      params.forEach((param) => {
-        if (req.session.obj[param]) {
-          if(req.session.obj[param] != res.body[param]) {
-            user.set(param, req.session.obj[param])
+      params.forEach(param => {
+        if (req.session.obj[param] != undefined) {
+          if(req.session.obj[param] != req.body[param]) {
+            sessionData.set(param, req.session.obj[param])
             saveNeeded = true;
+
           }
         }
       });
 
-
       if(saveNeeded)
-        await user.save();
+          await sessionData.save();
 
       let resObj = {};
-      resObj.success = user.toJSON();
+      resObj.success = sessionData.toJSON();
       resArray.push(resObj);
       res.status(200).json(resArray);
 
