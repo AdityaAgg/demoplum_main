@@ -1,26 +1,20 @@
 const home = require('../controllers/home')
-const authentication = require('../controllers/authentication')
+const session = require('../controllers/session')
 
 
-const autenticationMiddlewareFactory = require('../middlewares/auth')
-const setBudgetMiddlewareFactory = require('../middlewares/setBudget')
-const setBudgetAndAuthMiddlewareFactory = require('../middlewares/authBudgetNoUser')
-const setCategoryMiddlewareFactory = require('../middlewares/setCategory')
-const setTransactionMiddlewareFactory = require('../middlewares/setTransaction')
+//const autenticationMiddlewareFactory = require('../middlewares/auth')
+//const setBudgetMiddlewareFactory = require('../middlewares/setBudget')
+const sessionMiddlewareFactory = require('../../middlewares/sess');
 
 module.exports = (app, db) => {
-  let autenticationMiddleware = autenticationMiddlewareFactory(app, db)
-  let setBudgetMiddleware = setBudgetMiddlewareFactory(app, db)
-  let setBudgetNoUserMiddleware = setBudgetAndAuthMiddlewareFactory(app, db)
-  let setCategoryMiddleware = setCategoryMiddlewareFactory(app, db)
-  let setTransactionMiddleware = setTransactionMiddlewareFactory(app, db)
+  let sessionMiddleware = sess();
 
 
-  
+
 
   app.use('')
-  app.use('/', home(app, db))
-  app.use('/', authentication(app, db))
+  app.use('/',  home(app, db))
+  app.use('/', sessionMiddleware, session(app, db))
 
 
 
