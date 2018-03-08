@@ -3,7 +3,7 @@ Backend Prototype Inspired by [Leanplum API](https://www.leanplum.com/docs/api/)
 
 ![Travis](https://travis-ci.org/AdityaAgg/demoplum_main.svg?branch=master)
 
-This is an [express](https://expressjs.com/) app that attempts to replicate some of the functionality described in [Leanplum's API] (https://www.leanplum.com/docs/api/). The provided endpoints are mostly RESTful w/ a few execptions. The backing store is a standard mongodb process and memorystore for the session cache.  It was ported from a backend for a school [group project](https://github.com/anglinb/310-backend) I previously helped create. **This is just for educational purposes (and also because I'm searching for an opportunity @ Leanplum :))**
+This is an [express](https://expressjs.com/) app that attempts to replicate some of the functionality described in [Leanplum's API](https://www.leanplum.com/docs/api/). The provided endpoints are mostly RESTful w/ a few execptions. The backing store is a standard mongodb process and memorystore for the session cache.  It was ported from a backend for a school [group project](https://github.com/anglinb/310-backend) I previously worked on. **This is just for educational purposes (and also because I'd like to get hired by Leanplum :))**
 
 ### Progress
 
@@ -12,7 +12,7 @@ Currently, there is not much to this project. Basic session management has been 
 Completed Features:
 * basic session management
   * [start](https://www.leanplum.com/docs/api/production#start)
-
+  * [heartbeat](https://www.leanplum.com/docs/api/production#heartbeat)
 Optimizations for Completed Features:
 * improved test case coverage (unit testing)
 * replacement of memory store with redis or cassandra
@@ -41,7 +41,7 @@ npm run start:dev
 All the the deployment-specific configuration for the backend stored in a `.env` file in the root directory. The `.env` is written in a standard bash syntax and all the variables in the file get injected into the Node process as enviornment variables. The application can then access these variables through calling `process.env.VARIABLE_NAME`. A sample of this file is provided in `.env-example`. The list below specifies the necessary keys and how to find/set them.
 
 ```
-SESSION_SECRET="Keyboard-cat" # Secret is used to sign session ids.
+SESSION_SECRET="dev" # Secret is used to sign session ids.
 
 ```
 
