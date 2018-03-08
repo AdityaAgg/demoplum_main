@@ -15,7 +15,6 @@ const app = express()
 const db = require('./src/db')
 db.mongo.connect()
 
-cache(app)
 logger(app)
 
 app.use(morgan(':method :url :status :remote-addr :res[content-length] - :response-time ms'))
