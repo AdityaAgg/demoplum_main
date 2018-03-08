@@ -9,7 +9,7 @@
     "cron": "node cron.js",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "test": "npm run lint && npm run test:int && npm run test:unit",
+    "test": "npm run test:int",
     "test:unit": "NODE_ENV=test mocha --recursive tests/unit/",
     "test:unit:watch": "NODE_ENV=test M mocha --watch --recursive tests/unit/",
     "test:int": "NODE_ENV=test MONGO_DB_URL=\"localhost/demoplum_test\" mocha --recursive tests/int/",
