@@ -3,7 +3,7 @@ Backend Prototype Inspired by [Leanplum API](https://www.leanplum.com/docs/api/)
 
 ![Travis](https://travis-ci.org/AdityaAgg/demoplum_main.svg?branch=master)
 
-This is an [express](https://expressjs.com/) app that attempts to replicate some of the functionality described in [Leanplum's API](https://www.leanplum.com/docs/api/). The provided endpoints are mostly RESTful w/ a few execptions. The backing store is a standard mongodb process and memorystore for the session cache.  It was ported from a backend for a school [group project](https://github.com/anglinb/310-backend) I previously worked on. **This is just for educational purposes (and also because I'd like to get hired by Leanplum :))**
+This is an [express](https://expressjs.com/) app that attempts to replicate some of the functionality described in [Leanplum's API](https://www.leanplum.com/docs/api/). The provided endpoints are mostly RESTful w/ a few execptions. The backing store is a standard mongodb process and memorystore for the session cache.  It was ported from a backend for a school [group project](https://github.com/anglinb/310-backend) I previously worked on. **This is just for educational purposes (and also because I'm searching for an opportunity at the company :))**
 
 ### Progress
 
