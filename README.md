@@ -13,6 +13,7 @@ Completed Features:
 * basic session management
   * [start](https://www.leanplum.com/docs/api/production#start)
   * [heartbeat](https://www.leanplum.com/docs/api/production#heartbeat)
+
 Optimizations for Completed Features:
 * improved test case coverage (unit testing)
 * replacement of memory store with redis or cassandra
