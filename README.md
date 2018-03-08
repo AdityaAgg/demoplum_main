@@ -7,7 +7,7 @@ This is an [express](https://expressjs.com/) app that attempts to replicate some
 
 ### Progress
 
-Currently, there is not much to this project. Basic session management has been implemented however using [express-session](https://github.com/expressjs/session); which should serve as a baseline for the rest of the code keeping track of the session.
+Currently, there is not much to this project. Basic session management has been implemented however using [express-session](https://github.com/expressjs/session); which should serve as a baseline of the rest of the code for keeping track of state (state in the computer science rather than api sense).
 
 Completed Features:
 * basic session management
