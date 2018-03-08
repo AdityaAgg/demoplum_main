@@ -2,7 +2,6 @@
 const fs = require('fs')
 const path = require('path')
 const { Database } = require('mongorito')
-const plugins = require('./plugins')
 const timestamps = require('mongorito-timestamps')
 
 const basename = path.basename(module.filename)
@@ -24,6 +23,6 @@ fs.readdirSync(__dirname)
     exp[model.name] = model
   })
 
-plugins(exp) // Registers all the plugins
+
 
 module.exports = exp
