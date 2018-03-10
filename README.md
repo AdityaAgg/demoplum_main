@@ -16,7 +16,7 @@ Completed Features:
 
 Optimizations for Completed Features:
 * improved test case coverage (unit testing)
-* replacement of memory store with redis or cassandra
+* ~replacement of memory store with redis or cassandra~ ✅
 * better data validation and support for default values described in docs
 
 Future Feature Sets:
@@ -26,6 +26,11 @@ Future Feature Sets:
 ### Getting Started
 
 To get started, make sure you have Node `>= 7.6` installed to handle the `async/await` syntax and make sure you have `mongodb` running on the standard port.
+
+You also need to have Cassandra running locally as it is used for session memory. Install [Cassandra](http://cassandra.apache.org/download/) and run it using `./bin/cassandra`
+The default options are ok for this application since we are only running this on a single node.
+Afterwards, you need to create a "tests" keyspace by running `./bin/cqlsh` and writing something like `CREATE KEYSPACE tests WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};`. This just sets up the eventual consistency by defining how data is distributed from one node to others. Afterwards, run the database query script specified in the [cassandra-store module docs](https://www.npmjs.com/package/cassandra-store).
+
 
 *Note* You will have to modify you `.env` file before all of the server functionality will work.
 
