@@ -9,3 +9,5 @@ notifications:
   disabled: true
 before_install:
 - npm install -g npm@5
+dist: trusty
+sudo: required
