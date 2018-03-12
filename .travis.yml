@@ -1,4 +1,5 @@
-services: mongodb
+services:
+  - mongodb
   - cassandra
 sudo: false
 language: node_js
