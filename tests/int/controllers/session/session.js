@@ -61,7 +61,7 @@ describe('[controller] session', () => {
 
     })
   })
-
+  
   describe('without an existing session', () => {
 
     it('should warn that session is not alive', async () => {
