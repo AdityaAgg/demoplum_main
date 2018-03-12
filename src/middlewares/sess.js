@@ -14,7 +14,6 @@ const options = {
 module.exports = () => {
   return session({
     secret: process.env.SESSION_SECRET,
-    store: new CassandraStore(options),
     resave: false,
     saveUninitialized: true,
     cookie: {
