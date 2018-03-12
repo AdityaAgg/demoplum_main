@@ -9,3 +9,4 @@ notifications:
   disabled: true
 before_install:
 - npm install -g npm@5
+- cqlsh -f tests/schema.cql
