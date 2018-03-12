@@ -21,7 +21,7 @@ Optimizations for Completed Features:
 
 Future Feature Sets:
 * Event tracking
-* State tracking
+* State tracking _In Progress_
 
 ### Getting Started
 
