@@ -20,8 +20,8 @@ Optimizations for Completed Features:
 * better data validation and support for default values described in docs
 
 Future Feature Sets:
-* Event tracking
-* State tracking _In Progress_
+* Event tracking - _In Progress_
+* State tracking
 
 ### Getting Started
 
